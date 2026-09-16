@@ -136,7 +136,7 @@ function openDrinkFlavorModal(drink) {
 
   modal.innerHTML = `
     <div class="drink-flavor-modal__header">
-      <div><p>Personaliza tu bebida</p><h2>Elige la jalea</h2></div>
+      <div><p>Personaliza tu bebida</p><h2>${drink.selectorTitle || "Elije una opción"}</h2></div>
       <button type="button" class="drink-flavor-modal__close" aria-label="Cerrar selector"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <div class="drink-flavor-modal__product">
@@ -174,7 +174,11 @@ function openDrinkFlavorModal(drink) {
   byId("confirm-drink-flavor")?.addEventListener("click", () => {
     const selected = modal.querySelector('input[name="granizadoFlavor"]:checked');
     if (!selected) return;
-    addDrinkToCart({ ...drink, selectedFlavor: selected.value });
+    addDrinkToCart({
+      ...drink, 
+      selectedFlavor: selected.value,
+      selectedOptionLabel: drink.optionLabel || "Opción",
+    });
     showToast(`${drink.name} de ${selected.value} agregado al pedido`);
     closeModal();
   });

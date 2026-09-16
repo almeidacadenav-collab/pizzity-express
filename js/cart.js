@@ -54,6 +54,10 @@ function addDrinkToCart(drink) {
     extras: [],
     notes: "",
     selectedFlavor: drink.selectedFlavor || null,
+    selectedOptionLabel:
+      drink.selectedOptionLabel ||
+      drink.optionLabel ||
+      "Opción",
     quantity: 1,
     unitTotal: Number(drink.price),
   };
@@ -176,7 +180,7 @@ function renderCart() {
               <div>
                 <h3>${item.name}</h3>
                 <p>${item.type === "pizza" ? sizeDisplay(item.size) : "Bebida"}</p>
-                ${item.selectedFlavor ? `<p class="cart-item__flavor">Jalea: ${item.selectedFlavor}</p>` : ""}
+                ${item.selectedFlavor ? `<p class="cart-item__flavor">${item.selectedOptionLabel || "Opción"}: ${item.selectedFlavor}</p>` : ""}
               </div>
               <button type="button" class="cart-item__remove" data-action="remove" aria-label="Eliminar ${item.name}">
                 <i class="fa-solid fa-trash"></i>
@@ -285,7 +289,9 @@ function buildWhatsAppMessage(formData) {
       if (item.notes) lines.push(`   Nota: ${item.notes}`);
     }
     if (item.type === "drink" && item.selectedFlavor) {
-      lines.push(`   Jalea: ${item.selectedFlavor}`);
+      lines.push(
+        `   ${item.selectedOptionLabel || "Opción"}: ${item.selectedFlavor}`
+      );
     }
     lines.push(`   Subtotal: ${formatCurrency(item.unitTotal * item.quantity)}`);
   });

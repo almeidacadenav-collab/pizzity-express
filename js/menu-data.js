@@ -443,18 +443,31 @@ const DRINKS = [
     price: 1.25,
     featured: true,
     requiresFlavor: true,
-    flavors: ["Fresa", "Mora", "Piñacoco", "Maracumango", "Durazno"],
+    optionLabel: "Jalea",
+    selectorTitle: "Elije la jalea",
+    flavors: ["Sin jalea", "Fresa", "Mora", "Piñacoco", "Maracumango", "Durazno"],
   },
 
   {
     id: "gaseosa",
     name: "Gaseosa",
-    description: "Consulta los sabores disponibles.",
+    description: "Elige entre Coca-Cola, Sprite, Inca Kola, Fanta Naranja, Fanta Uva o Fioravanti.",
     category: "bebidas",
     image: "./assets/bebidas/gaseosa.jpg",
     fallbackImage: "./assets/logo/pizzity-logo.jpg",
     price: 1,
     featured: false,
+    requiresFlavor: true,
+    optionLaber: "Sabor",
+    selectorTitle: "Elije la gaseosa",
+    flavors: [
+      "Coca-Cola",
+      "Sprite",
+      "Inca Kola",
+      "Fanta Naranja",
+      "Fanta Uva",
+      "Fioravanti",
+    ],
   },
 
   {
