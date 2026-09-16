@@ -20,7 +20,7 @@ function saveCart() {
 
 function createCartItemId(item) {
   const extras = (item.extras || []).map((extra) => extra.id).sort().join("-");
-  return `${item.type}-${item.productId}-${item.secondFlavor || "single"}-${item.size || "unit"}-${extras}-${item.notes || ""}`;
+  return `${item.type}-${item.productId}-${item.secondFlavor || "single"}-${item.firstProtein || "none"}-${item.secondProtein || "none"}-${item.size || "unit"}-${extras}-${item.notes || ""}`;
 }
 
 function addPizzaToCart(configuredPizza) {
@@ -181,6 +181,8 @@ function renderCart() {
                 <h3>${item.name}</h3>
                 <p>${item.type === "pizza" ? sizeDisplay(item.size) : "Bebida"}</p>
                 ${item.selectedFlavor ? `<p class="cart-item__flavor">${item.selectedOptionLabel || "Opción"}: ${item.selectedFlavor}</p>` : ""}
+                ${item.firstProtein ? `<p class="cart-item__protein">Proteína${item.halfAndHalf ? ` de ${item.firstFlavor}` : ""}: ${item.firstProtein}</p>` : ""}
+                ${item.secondProtein ? `<p class="cart-item__protein">Proteína de ${item.secondFlavor}: ${item.secondProtein}</p>` : ""}
               </div>
               <button type="button" class="cart-item__remove" data-action="remove" aria-label="Eliminar ${item.name}">
                 <i class="fa-solid fa-trash"></i>
@@ -284,6 +286,12 @@ function buildWhatsAppMessage(formData) {
       lines.push(`   Tamaño: ${sizeDisplay(item.size)}`);
       if (item.halfAndHalf && item.secondFlavor) {
         lines.push(`   Sabores: 1/2 ${item.firstFlavor} + 1/2 ${item.secondFlavor}`);
+      }
+      if (item.firstProtein) {
+        lines.push(`   Proteína${item.halfAndHalf ? ` de ${item.firstFlavor}` : ""}: ${item.firstProtein}`);
+      }
+      if (item.secondProtein) {
+        lines.push(`   Proteína de ${item.secondFlavor}: ${item.secondProtein}`);
       }
       if (item.extras?.length) lines.push(`   Extras: ${item.extras.map((extra) => extra.name).join(", ")}`);
       if (item.notes) lines.push(`   Nota: ${item.notes}`);

@@ -401,6 +401,8 @@ const PIZZAS = [
     fallbackImage: "./assets/logo/pizzity-logo.jpg",
     featured: true,
     spicy: false,
+    requiresProtein: true,
+    proteinOptions: ["Carne", "Pollo"],
 
     prices: {
       personal: 3.5,
@@ -444,7 +446,7 @@ const DRINKS = [
     featured: true,
     requiresFlavor: true,
     optionLabel: "Jalea",
-    selectorTitle: "Elije la jalea",
+    selectorTitle: "Elige la jalea",
     flavors: ["Sin jalea", "Fresa", "Mora", "Piñacoco", "Maracumango", "Durazno"],
   },
 
@@ -458,8 +460,8 @@ const DRINKS = [
     price: 1,
     featured: false,
     requiresFlavor: true,
-    optionLaber: "Sabor",
-    selectorTitle: "Elije la gaseosa",
+    optionLabel: "Sabor",
+    selectorTitle: "Elige la gaseosa",
     flavors: [
       "Coca-Cola",
       "Sprite",

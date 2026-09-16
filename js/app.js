@@ -9,6 +9,8 @@ const appState = {
   selectedQuantity: 1,
   halfAndHalf: false,
   secondFlavor: null,
+  firstProtein: null,
+  secondProtein: null,
 };
 
 const byId = (id) => document.getElementById(id);
@@ -211,6 +213,8 @@ function openPizzaModal(pizzaId) {
   appState.selectedQuantity = 1;
   appState.halfAndHalf = false;
   appState.secondFlavor = null;
+  appState.firstProtein = null;
+  appState.secondProtein = null;
   byId("modal-product-name").textContent = pizza.name;
   byId("modal-product-description").textContent = pizza.description;
   byId("modal-product-image").src = pizza.image;
@@ -222,6 +226,7 @@ function openPizzaModal(pizzaId) {
   byId("product-notes").value = "";
   renderSizes();
   renderHalfAndHalfOptions();
+  renderProteinOptions();
   renderExtras();
   updateProductTotal();
   byId("product-modal").hidden = false;
@@ -252,6 +257,7 @@ function renderSizes() {
       }
       renderSizes();
       renderHalfAndHalfOptions();
+      renderProteinOptions();
       renderExtras();
       updateProductTotal();
     });
@@ -277,7 +283,10 @@ function renderHalfAndHalfOptions() {
   }
 
   const options = PIZZAS
-    .filter((pizza) => pizza.id !== appState.selectedProduct.id)
+    .filter((pizza) =>
+      pizza.id !== appState.selectedProduct.id ||
+      (pizza.id === "especial" && appState.selectedProduct.id === "especial")
+    )
     .map((pizza) => `<option value="${pizza.id}" ${appState.secondFlavor?.id === pizza.id ? "selected" : ""}>${pizza.name}</option>`)
     .join("");
 
@@ -299,12 +308,85 @@ function renderHalfAndHalfOptions() {
     appState.halfAndHalf = event.target.checked;
     if (!appState.halfAndHalf) appState.secondFlavor = null;
     renderHalfAndHalfOptions();
+    renderProteinOptions();
     updateProductTotal();
   });
 
   byId("second-flavor-select")?.addEventListener("change", (event) => {
     appState.secondFlavor = event.target.value ? findPizzaById(event.target.value) : null;
+    if (!appState.secondFlavor?.requiresProtein) appState.secondProtein = null;
+    renderProteinOptions();
     updateProductTotal();
+  });
+}
+
+function renderProteinOptions() {
+  const halfBox = byId("half-and-half-options");
+  const sizeBox = byId("modal-size-options");
+  const anchor = halfBox || sizeBox;
+  if (!anchor || !appState.selectedProduct) return;
+
+  let container = byId("protein-options");
+  if (!container) {
+    container = document.createElement("div");
+    container.id = "protein-options";
+    container.className = "protein-options";
+    anchor.insertAdjacentElement("afterend", container);
+  }
+
+  const firstNeedsProtein = Boolean(appState.selectedProduct.requiresProtein);
+  const secondNeedsProtein = Boolean(
+    appState.halfAndHalf && appState.secondFlavor?.requiresProtein
+  );
+
+  if (!firstNeedsProtein && !secondNeedsProtein) {
+    container.innerHTML = "";
+    container.hidden = true;
+    return;
+  }
+
+  container.hidden = false;
+  const proteinGroup = (title, stateKey, options) => `
+    <fieldset class="protein-group">
+      <legend>${title}</legend>
+      <div class="protein-choice-grid">
+        ${options.map((protein) => `
+          <label class="protein-choice ${appState[stateKey] === protein ? "selected" : ""}">
+            <input type="radio" name="${stateKey}" value="${protein}" ${appState[stateKey] === protein ? "checked" : ""}>
+            <i class="fa-solid ${protein === "Carne" ? "fa-burger" : "fa-drumstick-bite"}"></i>
+            <span>${protein}</span>
+          </label>`).join("")}
+      </div>
+    </fieldset>`;
+
+  const blocks = [];
+  if (firstNeedsProtein) {
+    blocks.push(proteinGroup(
+      appState.halfAndHalf && appState.secondFlavor?.id === appState.selectedProduct.id
+        ? "Proteína de la primera mitad Especial"
+        : appState.halfAndHalf
+          ? `Proteína de la mitad ${appState.selectedProduct.name}`
+          : "Elige la proteína",
+      "firstProtein",
+      appState.selectedProduct.proteinOptions
+    ));
+  }
+  if (secondNeedsProtein) {
+    blocks.push(proteinGroup(
+      appState.secondFlavor.id === appState.selectedProduct.id
+        ? "Proteína de la segunda mitad Especial"
+        : `Proteína de la mitad ${appState.secondFlavor.name}`,
+      "secondProtein",
+      appState.secondFlavor.proteinOptions
+    ));
+  }
+  container.innerHTML = `<p class="protein-options__title">Selección obligatoria</p>${blocks.join("")}`;
+
+  container.querySelectorAll('input[type="radio"]').forEach((radio) => {
+    radio.addEventListener("change", () => {
+      appState[radio.name] = radio.value;
+      renderProteinOptions();
+    });
   });
 }
 
@@ -375,6 +457,23 @@ function initializeApp() {
       alert("Selecciona el segundo sabor de la pizza mitad y mitad.");
       return;
     }
+    if (pizza.requiresProtein && !appState.firstProtein) {
+      alert("Selecciona Carne o Pollo para la Pizza Especial.");
+      return;
+    }
+    if (appState.halfAndHalf && appState.secondFlavor?.requiresProtein && !appState.secondProtein) {
+      alert("Selecciona Carne o Pollo para la mitad Especial.");
+      return;
+    }
+    if (
+      appState.halfAndHalf &&
+      pizza.id === "especial" &&
+      appState.secondFlavor?.id === "especial" &&
+      appState.firstProtein === appState.secondProtein
+    ) {
+      alert("Para una Especial mitad y mitad, elige Carne en una mitad y Pollo en la otra.");
+      return;
+    }
     addPizzaToCart({
       productId: pizza.id,
       type: "pizza",
@@ -384,6 +483,8 @@ function initializeApp() {
       firstFlavor: pizza.name,
       secondFlavor: appState.secondFlavor?.name || null,
       halfAndHalf: appState.halfAndHalf,
+      firstProtein: appState.firstProtein,
+      secondProtein: appState.secondProtein,
       image: pizza.image,
       fallbackImage: pizza.fallbackImage,
       size: appState.selectedSize,
