@@ -1,0 +1,85 @@
+/* PIZZAS MITAD Y MITAD */
+
+.half-and-half-options {
+  display: grid;
+  gap: 12px;
+  margin: 14px 0 24px;
+}
+
+.half-note {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #f4f4f4;
+  color: #666666;
+  font-size: 13px;
+}
+
+.half-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px;
+  border: 2px solid #ffdd00;
+  border-radius: 14px;
+  background: #fffbe0;
+  cursor: pointer;
+}
+
+.half-toggle input {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: #b99e00;
+}
+
+.half-toggle span,
+.half-toggle strong,
+.half-toggle small {
+  display: block;
+}
+
+.half-toggle small {
+  margin-top: 4px;
+  color: #666666;
+}
+
+.second-flavor-field {
+  display: grid;
+  gap: 8px;
+  padding: 15px;
+  border: 1px solid #dedede;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.second-flavor-field[hidden] {
+  display: none;
+}
+
+.second-flavor-field label {
+  font-weight: 800;
+}
+
+.second-flavor-field select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #cccccc;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #111111;
+  font: inherit;
+}
+
+.second-flavor-field p {
+  margin: 0;
+  color: #666666;
+  font-size: 12px;
+}
+
+.cart-item__flavor {
+  margin: 4px 0 0;
+  color: #8b7600;
+  font-size: 12px;
+  font-weight: 700;
+}
