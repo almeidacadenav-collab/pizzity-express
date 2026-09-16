@@ -434,6 +434,19 @@ const PIZZAS = [
 
 const DRINKS = [
   {
+    id: "granizado-chiveria",
+    name: "Granizado Chiveria",
+    description: "Granizado refrescante con la jalea de tu elección.",
+    category: "bebidas",
+    image: "./assets/bebidas/granizado-chiveria.jpg",
+    fallbackImage: "./assets/logo/pizzity-logo.jpg",
+    price: 1.25,
+    featured: true,
+    requiresFlavor: true,
+    flavors: ["Fresa", "Mora", "Piñacoco", "Maracumango", "Durazno"],
+  },
+
+  {
     id: "gaseosa",
     name: "Gaseosa",
     description: "Consulta los sabores disponibles.",
