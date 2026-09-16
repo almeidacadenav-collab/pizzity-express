@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <meta
+      name="description"
+      content="Pizzity Express ofrece pizzas preparadas con ingredientes 100% naturales y frescos en Quito. Personaliza tu pizza y realiza tu pedido por WhatsApp."
+    />
+
+    <meta
+      name="keywords"
+      content="Pizzity Express, pizzas en Quito, pizza fresca, pizza para llevar, pizza San Ignacio"
+    />
+
+    <meta name="author" content="Pizzity Express" />
+    <meta name="theme-color" content="#0a0a0a" />
+
+    <!-- Información para compartir el sitio -->
+    <meta property="og:type" content="website" />
+
+    <meta
+      property="og:title"
+      content="Pizzity Express | Pizza fresca en Quito"
+    />
+
+    <meta
+      property="og:description"
+      content="Naturalmente frescas. Irresistiblemente Pizzity."
+    />
+
+    <meta
+      property="og:image"
+      content="./assets/images/local.jpg"
+    />
+
+    <meta property="og:locale" content="es_EC" />
+
+    <title>Pizzity Express | Pizza fresca en Quito</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/jpeg"
+      href="./assets/logo/pizzity-logo.jpg"
+    />
+
+    <!-- Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Permanent+Marker&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <!-- Estilos del proyecto -->
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./css/responsive.css" />
+    <link rel="stylesheet" href="./css/payment.css" />
+  </head>
+
+  <body>
+    <!-- Enlace de accesibilidad -->
+    <a href="#contenido-principal" class="skip-link">
+      Saltar al contenido principal
+    </a>
+
+    <!-- Barra superior -->
+    <div class="top-message">
+      <div class="container top-message__content">
+        <p>
+          <i class="fa-solid fa-pizza-slice"></i>
+          Pizzas preparadas al momento con ingredientes frescos
+        </p>
+
+        <p class="top-message__schedule">
+          <i class="fa-regular fa-clock"></i>
+          Lunes a viernes, 12:30 a 20:00
+        </p>
+      </div>
+    </div>
+
+    <!-- Encabezado principal -->
+    <header class="main-header" id="inicio">
+      <div class="container header-container">
+        <!-- Logotipo -->
+        <a href="#inicio" class="brand" aria-label="Inicio de Pizzity Express">
+          <img
+            src="./assets/logo/pizzity-logo.jpg"
+            alt="Logotipo de Pizzity Express"
+            class="brand__logo"
+          />
+        </a>
+
+        <!-- Navegación para computadora -->
+        <nav class="desktop-nav" aria-label="Navegación principal">
+          <a href="#inicio">Inicio</a>
+          <a href="#menu">Menú</a>
+          <a href="#como-pedir">Cómo pedir</a>
+          <a href="#nosotros">Nosotros</a>
+          <a href="#ubicacion">Ubicación</a>
+        </nav>
+
+        <!-- Botones del encabezado -->
+        <div class="header-actions">
+          <button
+            type="button"
+            class="cart-button"
+            id="open-cart-button"
+            aria-label="Abrir carrito"
+          >
+            <i class="fa-solid fa-bag-shopping"></i>
+
+            <span class="cart-button__text">Mi pedido</span>
+
+            <span class="cart-counter" id="cart-counter">0</span>
+          </button>
+
+          <button
+            type="button"
+            class="mobile-menu-button"
+            id="mobile-menu-button"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Navegación para celulares -->
+      <nav
+        class="mobile-nav"
+        id="mobile-navigation"
+        aria-label="Navegación para celulares"
+      >
+        <a href="#inicio">Inicio</a>
+        <a href="#menu">Menú</a>
+        <a href="#como-pedir">Cómo pedir</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#ubicacion">Ubicación</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </header>
+
+    <!-- Contenido principal -->
+    <main id="contenido-principal">
+      <!-- Portada -->
+      <section class="hero">
+        <div class="hero__overlay"></div>
+
+        <div class="container hero__container">
+          <div class="hero__content">
+            <!-- Estado del negocio -->
+            <div class="business-status" id="business-status">
+              <span class="business-status__indicator"></span>
+
+              <span id="business-status-text">
+                Consultando horario...
+              </span>
+            </div>
+
+            <p class="hero__eyebrow">
+              <i class="fa-solid fa-leaf"></i>
+              Ingredientes 100% naturales y frescos
+            </p>
+
+            <h1 class="hero__title">
+              Naturalmente frescas.
+              <span>Irresistiblemente Pizzity.</span>
+            </h1>
+
+            <p class="hero__description">
+              Disfruta pizzas preparadas al momento con ingredientes
+              seleccionados. Personaliza tu favorita, envía tu pedido
+              por WhatsApp y retírala en nuestro local.
+            </p>
+
+            <div class="hero__actions">
+              <a href="#menu" class="button button--primary">
+                Ver el menú
+                <i class="fa-solid fa-arrow-down"></i>
+              </a>
+
+              <a
+                href="https://wa.me/593987775595?text=Hola%20Pizzity%20Express%2C%20quiero%20realizar%20un%20pedido."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="button button--whatsapp"
+              >
+                <i class="fa-brands fa-whatsapp"></i>
+                Pedir por WhatsApp
+              </a>
+            </div>
+
+            <div class="hero__features">
+              <div class="hero-feature">
+                <i class="fa-solid fa-leaf"></i>
+
+                <div>
+                  <strong>Ingredientes frescos</strong>
+                  <span>Calidad en cada pizza</span>
+                </div>
+              </div>
+
+              <div class="hero-feature">
+                <i class="fa-solid fa-fire-flame-curved"></i>
+
+                <div>
+                  <strong>Preparadas al momento</strong>
+                  <span>Directamente desde el horno</span>
+                </div>
+              </div>
+
+              <div class="hero-feature">
+                <i class="fa-solid fa-store"></i>
+
+                <div>
+                  <strong>Retiro en el local</strong>
+                  <span>Rápido y sencillo</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tarjeta con imagen -->
+          <aside class="hero-card">
+            <div class="hero-card__image">
+              <img
+                src="./assets/images/pedidos.jpg"
+                alt="Pedidos para llevar de Pizzity Express"
+                class="hero-card__photo"
+              />
+
+              <div class="hero-card__badge">
+                <i class="fa-solid fa-bolt"></i>
+                Pedido rápido
+              </div>
+            </div>
+
+            <div class="hero-card__content">
+              <span class="hero-card__label">Pide y retira</span>
+
+              <h2>Tu pizza lista cuando llegues</h2>
+
+              <p>
+                Arma tu pedido desde la página y envíalo directamente
+                al WhatsApp de Pizzity Express.
+              </p>
+
+              <a href="#menu" class="text-link">
+                Elegir una pizza
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Beneficios -->
+      <section class="benefits">
+        <div class="container benefits__grid">
+          <article class="benefit-card">
+            <div class="benefit-card__icon">
+              <i class="fa-solid fa-seedling"></i>
+            </div>
+
+            <div>
+              <h2>100% naturales</h2>
+              <p>Ingredientes frescos y seleccionados.</p>
+            </div>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-card__icon">
+              <i class="fa-solid fa-pizza-slice"></i>
+            </div>
+
+            <div>
+              <h2>14 sabores</h2>
+              <p>Opciones clásicas, especiales y vegetarianas.</p>
+            </div>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-card__icon">
+              <i class="fa-solid fa-ruler"></i>
+            </div>
+
+            <div>
+              <h2>3 tamaños</h2>
+              <p>Personal, mediana y familiar.</p>
+            </div>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-card__icon">
+              <i class="fa-brands fa-whatsapp"></i>
+            </div>
+
+            <div>
+              <h2>Pedido directo</h2>
+              <p>Enviado al WhatsApp oficial del negocio.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Menú -->
+      <section class="menu-section section" id="menu">
+        <div class="container">
+          <div class="section-heading section-heading--center">
+            <p class="section-heading__eyebrow">Nuestro menú</p>
+
+            <h2>Elige tu pizza favorita</h2>
+
+            <p>
+              Selecciona una pizza, escoge el tamaño y agrega los
+              ingredientes adicionales que prefieras.
+            </p>
+          </div>
+
+          <!-- Buscador -->
+          <div class="menu-controls">
+            <label class="search-box" for="menu-search">
+              <i class="fa-solid fa-magnifying-glass"></i>
+
+              <input
+                type="search"
+                id="menu-search"
+                placeholder="Buscar una pizza..."
+                autocomplete="off"
+              />
+            </label>
+
+            <!-- Filtros -->
+            <div class="category-filters" id="category-filters">
+              <button
+                type="button"
+                class="filter-button active"
+                data-category="todos"
+              >
+                Todas
+              </button>
+
+              <button
+                type="button"
+                class="filter-button"
+                data-category="clasicas"
+              >
+                Clásicas
+              </button>
+
+              <button
+                type="button"
+                class="filter-button"
+                data-category="especiales"
+              >
+                Especiales
+              </button>
+
+              <button
+                type="button"
+                class="filter-button"
+                data-category="pollo"
+              >
+                Pollo
+              </button>
+
+              <button
+                type="button"
+                class="filter-button"
+                data-category="vegetarianas"
+              >
+                Vegetarianas
+              </button>
+
+              <button
+                type="button"
+                class="filter-button"
+                data-category="bebidas"
+              >
+                Bebidas
+              </button>
+            </div>
+          </div>
+
+          <!-- Aquí aparecerán las pizzas -->
+          <div class="menu-grid" id="menu-grid">
+            <div class="loading-message">
+              <i class="fa-solid fa-spinner fa-spin"></i>
+              <p>Cargando el menú de Pizzity Express...</p>
+            </div>
+          </div>
+
+          <div class="empty-results" id="empty-results" hidden>
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <h3>No encontramos esa pizza</h3>
+            <p>Prueba con otro nombre o categoría.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tamaños -->
+      <section class="sizes-section section">
+        <div class="container">
+          <div class="section-heading section-heading--center">
+            <p class="section-heading__eyebrow">El tamaño perfecto</p>
+            <h2>Una pizza para cada momento</h2>
+          </div>
+
+          <div class="sizes-grid">
+            <article class="size-card">
+              <div class="size-card__pizza size-card__pizza--personal">
+                <i class="fa-solid fa-pizza-slice"></i>
+              </div>
+
+              <p class="size-card__measurement">22 cm</p>
+              <h3>Personal</h3>
+              <p>Una opción práctica para disfrutar individualmente.</p>
+            </article>
+
+            <article class="size-card size-card--featured">
+              <span class="size-card__badge">La más elegida</span>
+
+              <div class="size-card__pizza size-card__pizza--medium">
+                <i class="fa-solid fa-pizza-slice"></i>
+              </div>
+
+              <p class="size-card__measurement">35 cm</p>
+              <h3>Mediana</h3>
+              <p>8 porciones para compartir.</p>
+            </article>
+
+            <article class="size-card">
+              <div class="size-card__pizza size-card__pizza--family">
+                <i class="fa-solid fa-pizza-slice"></i>
+              </div>
+
+              <p class="size-card__measurement">45 cm</p>
+              <h3>Familiar</h3>
+              <p>12 porciones para reuniones y grandes momentos.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cómo pedir -->
+      <section class="how-to-order section" id="como-pedir">
+        <div class="container">
+          <div class="section-heading section-heading--center">
+            <p class="section-heading__eyebrow">Fácil y rápido</p>
+            <h2>¿Cómo realizar tu pedido?</h2>
+
+            <p>
+              Configura todo desde la página y envía el resumen por
+              WhatsApp.
+            </p>
+          </div>
+
+          <div class="steps-grid">
+            <article class="step-card">
+              <span class="step-card__number">01</span>
+
+              <div class="step-card__icon">
+                <i class="fa-solid fa-pizza-slice"></i>
+              </div>
+
+              <h3>Elige tu pizza</h3>
+              <p>Explora el menú y selecciona tu favorita.</p>
+            </article>
+
+            <article class="step-card">
+              <span class="step-card__number">02</span>
+
+              <div class="step-card__icon">
+                <i class="fa-solid fa-sliders"></i>
+              </div>
+
+              <h3>Personalízala</h3>
+              <p>Escoge tamaño, cantidad e ingredientes extra.</p>
+            </article>
+
+            <article class="step-card">
+              <span class="step-card__number">03</span>
+
+              <div class="step-card__icon">
+                <i class="fa-solid fa-bag-shopping"></i>
+              </div>
+
+              <h3>Revisa el pedido</h3>
+              <p>Comprueba los productos y el precio total.</p>
+            </article>
+
+            <article class="step-card">
+              <span class="step-card__number">04</span>
+
+              <div class="step-card__icon">
+                <i class="fa-brands fa-whatsapp"></i>
+              </div>
+
+              <h3>Envíalo</h3>
+              <p>Confirma el pedido directamente por WhatsApp.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pide y retira -->
+      <section class="pickup-section section">
+        <div class="container pickup-section__container">
+          <div class="pickup-section__image">
+            <img
+              src="./assets/images/pedidos.jpg"
+              alt="Cajas para pedidos de Pizzity Express"
+            />
+
+            <span class="pickup-section__image-label">
+              <i class="fa-solid fa-box"></i>
+              Listas para llevar
+            </span>
+          </div>
+
+          <div class="pickup-section__content">
+            <p class="section-heading__eyebrow">Pide y retira</p>
+
+            <h2>Evita esperas innecesarias</h2>
+
+            <p>
+              Realiza el pedido desde la página, selecciona una hora
+              aproximada y espera la confirmación de Pizzity Express.
+            </p>
+
+            <ul class="check-list">
+              <li>
+                <i class="fa-solid fa-check"></i>
+                Pedido organizado y detallado
+              </li>
+
+              <li>
+                <i class="fa-solid fa-check"></i>
+                Confirmación directa por WhatsApp
+              </li>
+
+              <li>
+                <i class="fa-solid fa-check"></i>
+                Pago en efectivo o transferencia
+              </li>
+
+              <li>
+                <i class="fa-solid fa-check"></i>
+                Selección de hora aproximada
+              </li>
+            </ul>
+
+            <a href="#menu" class="button button--primary">
+              Preparar mi pedido
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Nosotros -->
+      <section class="about-section section" id="nosotros">
+        <div class="container about-section__container">
+          <div class="about-section__content">
+            <p class="section-heading__eyebrow">Pizzity Express</p>
+
+            <h2>
+              Pizza fresca, atención directa y sabor para compartir
+            </h2>
+
+            <p>
+              En Pizzity Express preparamos pizzas con ingredientes
+              naturales y frescos. Cada pedido se prepara
+              cuidadosamente para disfrutar en el local o para llevar.
+            </p>
+
+            <p>
+              Visítanos en Quito y descubre nuestra variedad de
+              sabores, tamaños y combinaciones.
+            </p>
+
+            <div class="about-statistics">
+              <div class="about-statistic">
+                <strong>14</strong>
+                <span>Sabores de pizza</span>
+              </div>
+
+              <div class="about-statistic">
+                <strong>3</strong>
+                <span>Tamaños disponibles</span>
+              </div>
+
+              <div class="about-statistic">
+                <strong>100%</strong>
+                <span>Ingredientes frescos</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-section__image">
+            <img
+              src="./assets/images/local.jpg"
+              alt="Local de Pizzity Express en Quito"
+            />
+
+            <div class="about-section__message">
+              <i class="fa-solid fa-heart"></i>
+
+              <div>
+                <strong>I love pizza</strong>
+                <span>Visítanos en Quito</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ubicación -->
+      <section class="location-section section" id="ubicacion">
+        <div class="container">
+          <div class="section-heading section-heading--center">
+            <p class="section-heading__eyebrow">Visítanos</p>
+            <h2>Estamos en Quito</h2>
+
+            <p>
+              Plácido Caamaño N25-62 y San Ignacio, Quito.
+            </p>
+          </div>
+
+          <div class="location-grid">
+            <div class="location-information">
+              <article class="contact-card">
+                <div class="contact-card__icon">
+                  <i class="fa-solid fa-location-dot"></i>
+                </div>
+
+                <div>
+                  <h3>Dirección</h3>
+                  <p>Plácido Caamaño N25-62 y San Ignacio</p>
+                  <span>Quito, Ecuador</span>
+                </div>
+              </article>
+
+              <article class="contact-card">
+                <div class="contact-card__icon">
+                  <i class="fa-regular fa-clock"></i>
+                </div>
+
+                <div>
+                  <h3>Horario</h3>
+                  <p>Lunes a viernes: 12:30 a 20:00</p>
+                  <span>Sábado y domingo: cerrado</span>
+                </div>
+              </article>
+
+              <article class="contact-card">
+                <div class="contact-card__icon">
+                  <i class="fa-solid fa-phone"></i>
+                </div>
+
+                <div>
+                  <h3>Teléfono y WhatsApp</h3>
+
+                  <a href="tel:+593987775595">
+                    +593 98 777 5595
+                  </a>
+                </div>
+              </article>
+
+              <article class="contact-card">
+                <div class="contact-card__icon">
+                  <i class="fa-solid fa-credit-card"></i>
+                </div>
+
+                <div>
+                  <h3>Formas de pago</h3>
+                  <p>Efectivo o transferencia</p>
+                  <span>Datos confirmados por WhatsApp</span>
+                </div>
+              </article>
+
+              <div class="location-actions">
+                <a
+                  href="https://maps.app.goo.gl/hwd1XVbwqZfLxo4U8?g_st=ac"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="button button--primary"
+                >
+                  <i class="fa-solid fa-location-arrow"></i>
+                  Cómo llegar
+                </a>
+
+                <a
+                  href="tel:+593987775595"
+                  class="button button--secondary"
+                >
+                  <i class="fa-solid fa-phone"></i>
+                  Llamar ahora
+                </a>
+              </div>
+            </div>
+
+            <!-- Bloque de mapa -->
+            <div class="map-placeholder">
+              <div class="map-placeholder__pattern"></div>
+
+              <div class="map-placeholder__content">
+                <span class="map-placeholder__pin">
+                  <i class="fa-solid fa-location-dot"></i>
+                </span>
+
+                <h3>Pizzity Express</h3>
+
+                <p>
+                  Plácido Caamaño N25-62 y San Ignacio
+                </p>
+
+                <a
+                  href="https://maps.app.goo.gl/hwd1XVbwqZfLxo4U8?g_st=ac"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-link text-link--light"
+                >
+                  Abrir en Google Maps
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Llamada final -->
+      <section class="final-cta">
+        <div class="container final-cta__container">
+          <div>
+            <p class="final-cta__eyebrow">¿Listo para pedir?</p>
+
+            <h2>Tu próxima pizza está a pocos clics</h2>
+
+            <p>
+              Personaliza el pedido y envíalo directamente a Pizzity
+              Express.
+            </p>
+          </div>
+
+          <a href="#menu" class="button button--dark">
+            Elegir mi pizza
+            <i class="fa-solid fa-pizza-slice"></i>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="footer" id="contacto">
+      <div class="container footer__grid">
+        <div class="footer__brand">
+          <img
+            src="./assets/logo/pizzity-logo.jpg"
+            alt="Pizzity Express"
+            class="footer__logo"
+          />
+
+          <p>
+            Pizzas preparadas con ingredientes 100% naturales y frescos
+            en Quito, Ecuador.
+          </p>
+        </div>
+
+        <div class="footer__column">
+          <h2>Navegación</h2>
+
+          <a href="#inicio">Inicio</a>
+          <a href="#menu">Menú</a>
+          <a href="#como-pedir">Cómo pedir</a>
+          <a href="#nosotros">Nosotros</a>
+          <a href="#ubicacion">Ubicación</a>
+        </div>
+
+        <div class="footer__column">
+          <h2>Atención</h2>
+
+          <p>Lunes a viernes</p>
+          <p>12:30 a 20:00</p>
+          <p>Sábado y domingo: cerrado</p>
+
+          <a href="tel:+593987775595">
+            +593 98 777 5595
+          </a>
+        </div>
+
+        <div class="footer__column">
+          <h2>Síguenos</h2>
+
+          <div class="social-links">
+            <a
+              href="https://www.instagram.com/pizzityquito"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram de Pizzity Express"
+            >
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+
+            <a
+              href="https://www.facebook.com/people/Pizzity/61557080229458/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook de Pizzity Express"
+            >
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+
+            <a
+              href="https://www.tiktok.com/@pizzityexpress"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="TikTok de Pizzity Express"
+            >
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+
+            <a
+              href="https://wa.me/593987775595"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp de Pizzity Express"
+            >
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container footer__bottom">
+        <p>
+          © <span id="current-year">2026</span> Pizzity Express.
+          Todos los derechos reservados.
+        </p>
+
+        <p>Sitio web oficial de Pizzity Express.</p>
+      </div>
+    </footer>
+
+    <!-- WhatsApp flotante -->
+    <a
+      href="https://wa.me/593987775595?text=Hola%20Pizzity%20Express%2C%20quiero%20realizar%20un%20pedido."
+      target="_blank"
+      rel="noopener noreferrer"
+      class="whatsapp-floating"
+      aria-label="Realizar pedido por WhatsApp"
+    >
+      <i class="fa-brands fa-whatsapp"></i>
+      <span>Haz tu pedido</span>
+    </a>
+
+    <!-- Oscurece la pantalla cuando se abre una ventana -->
+    <div class="modal-overlay" id="modal-overlay"></div>
+
+    <!-- Ventana para personalizar pizza -->
+    <section
+      class="product-modal"
+      id="product-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="product-modal-title"
+      hidden
+    >
+      <div class="product-modal__header">
+        <div>
+          <p>Personaliza tu pizza</p>
+          <h2 id="product-modal-title">Seleccionar producto</h2>
+        </div>
+
+        <button
+          type="button"
+          class="close-button"
+          id="close-product-modal"
+          aria-label="Cerrar personalización"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="product-modal__body">
+        <div class="product-modal__product">
+          <img
+            src="./assets/logo/pizzity-logo.jpg"
+            alt="Producto seleccionado"
+            id="modal-product-image"
+          />
+
+          <div>
+            <h3 id="modal-product-name">
+              Producto seleccionado
+            </h3>
+
+            <p id="modal-product-description">
+              Selecciona una pizza desde el menú.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tamaños -->
+        <fieldset class="product-options">
+          <legend>1. Selecciona el tamaño</legend>
+
+          <div class="size-options" id="modal-size-options">
+            <!-- JavaScript colocará las opciones -->
+          </div>
+        </fieldset>
+
+        <!-- Extras -->
+        <fieldset class="product-options">
+          <legend>2. Agrega ingredientes extra</legend>
+
+          <p class="option-help">
+            El precio depende del tamaño seleccionado.
+          </p>
+
+          <div class="extras-options" id="modal-extra-options">
+            <!-- JavaScript colocará los extras -->
+          </div>
+        </fieldset>
+
+        <!-- Cantidad -->
+        <div class="quantity-section">
+          <div>
+            <h3>3. Selecciona la cantidad</h3>
+            <p>Define cuántas pizzas deseas agregar.</p>
+          </div>
+
+          <div class="quantity-control">
+            <button
+              type="button"
+              id="decrease-product-quantity"
+              aria-label="Reducir cantidad"
+            >
+              <i class="fa-solid fa-minus"></i>
+            </button>
+
+            <span id="product-quantity">1</span>
+
+            <button
+              type="button"
+              id="increase-product-quantity"
+              aria-label="Aumentar cantidad"
+            >
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Observaciones -->
+        <label class="notes-field" for="product-notes">
+          <span>4. Observaciones</span>
+
+          <textarea
+            id="product-notes"
+            rows="3"
+            maxlength="180"
+            placeholder="Ejemplo: sin cebolla, poco tostada..."
+          ></textarea>
+
+          <small>Máximo 180 caracteres.</small>
+        </label>
+      </div>
+
+      <div class="product-modal__footer">
+        <div>
+          <span>Total del producto</span>
+          <strong id="modal-product-total">$0,00</strong>
+        </div>
+
+        <button
+          type="button"
+          class="button button--primary"
+          id="add-product-to-cart"
+        >
+          <i class="fa-solid fa-plus"></i>
+          Agregar al pedido
+        </button>
+      </div>
+    </section>
+
+    <!-- Carrito lateral -->
+    <aside
+      class="cart-panel"
+      id="cart-panel"
+      aria-labelledby="cart-title"
+      aria-hidden="true"
+    >
+      <div class="cart-panel__header">
+        <div>
+          <p>Tu selección</p>
+          <h2 id="cart-title">Mi pedido</h2>
+        </div>
+
+        <button
+          type="button"
+          class="close-button"
+          id="close-cart-button"
+          aria-label="Cerrar carrito"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="cart-panel__products" id="cart-products">
+        <div class="empty-cart">
+          <i class="fa-solid fa-bag-shopping"></i>
+
+          <h3>Tu pedido está vacío</h3>
+
+          <p>
+            Agrega una pizza o bebida desde el menú.
+          </p>
+
+          <button
+            type="button"
+            class="button button--secondary"
+            id="explore-menu-button"
+          >
+            Explorar el menú
+          </button>
+        </div>
+      </div>
+
+      <div class="cart-summary">
+        <div class="cart-summary__line">
+          <span>Productos</span>
+          <strong id="cart-products-subtotal">$0,00</strong>
+        </div>
+
+        <div class="cart-summary__line">
+          <span>Empaque para llevar</span>
+          <strong id="cart-packaging-total">$0,00</strong>
+        </div>
+
+        <div class="cart-summary__total">
+          <span>Total</span>
+          <strong id="cart-total">$0,00</strong>
+        </div>
+
+        <button
+          type="button"
+          class="button button--primary button--full"
+          id="continue-order-button"
+          disabled
+        >
+          Continuar con el pedido
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Formulario final -->
+    <section
+      class="checkout-modal"
+      id="checkout-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="checkout-title"
+      hidden
+    >
+      <div class="checkout-modal__header">
+        <div>
+          <p>Último paso</p>
+          <h2 id="checkout-title">Completa tu pedido</h2>
+        </div>
+
+        <button
+          type="button"
+          class="close-button"
+          id="close-checkout-modal"
+          aria-label="Cerrar formulario"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="checkout-form" class="checkout-form">
+        <label class="form-field" for="customer-name">
+          <span>Nombre del cliente</span>
+
+          <input
+            type="text"
+            id="customer-name"
+            name="customerName"
+            placeholder="Escribe tu nombre"
+            minlength="2"
+            maxlength="60"
+            required
+          />
+        </label>
+
+        <fieldset class="form-fieldset">
+          <legend>Modalidad del pedido</legend>
+
+          <label class="selection-card">
+            <input
+              type="radio"
+              name="orderType"
+              value="local"
+              checked
+            />
+
+            <span class="selection-card__icon">
+              <i class="fa-solid fa-utensils"></i>
+            </span>
+
+            <span>
+              <strong>Comer en el local</strong>
+              <small>Sin costo de empaque</small>
+            </span>
+          </label>
+
+          <label class="selection-card">
+            <input
+              type="radio"
+              name="orderType"
+              value="pickup"
+            />
+
+            <span class="selection-card__icon">
+              <i class="fa-solid fa-box"></i>
+            </span>
+
+            <span>
+              <strong>Pedido para llevar</strong>
+              <small>Se agrega el costo del empaque</small>
+            </span>
+          </label>
+        </fieldset>
+
+        <label class="form-field" for="pickup-time">
+          <span>Hora aproximada</span>
+
+          <input
+            type="time"
+            id="pickup-time"
+            name="pickupTime"
+            min="12:30"
+            max="20:00"
+            required
+          />
+
+          <small>
+            El pedido está sujeto a confirmación.
+          </small>
+        </label>
+
+        <fieldset class="form-fieldset">
+            <legend>Método de pago obligatorio</legend>
+
+            <div class="payment-method-card">
+                <input
+                    type="radio"
+                    id="payment-transfer"
+                    name="paymentMethod"
+                    value="Transferencia bancaria"
+                    checked
+                    required
+                >
+
+                <label for="payment-transfer" class="payment-method-label">
+                    <span class="selection-card__icon">
+                        <i class="fa-solid fa-building-columns"></i>
+                    </span>
+
+                    <span class="payment-method-text">
+                        <strong>Transferencia bancaria</strong>
+                        <small>Único método de pago disponible</small>
+                    </span>
+                </label>
+            </div>
+
+            <div class="payment-notice">
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <div>
+                    <strong>Pago anticipado obligatorio</strong>
+
+                    <p>
+                        Después de enviar el pedido por WhatsApp, Pizzity Express
+                        proporcionará los datos bancarios. El pedido se preparará
+                        únicamente después de verificar el comprobante.
+                    </p>
+                </div>
+            </div>
+        </fieldset>
+
+        <div class="payment-confirmation-wrapper">
+            <input
+                type="checkbox"
+                id="payment-policy-accepted"
+                name="paymentPolicyAccepted"
+                required
+            >
+
+            <label for="payment-policy-accepted">
+                Entiendo que mi pedido solamente será preparado después de que
+                Pizzity Express confirme la transferencia bancaria.
+            </label>
+        </div>
+
+        <label class="form-field" for="order-notes">
+          <span>Observaciones generales</span>
+
+          <textarea
+            id="order-notes"
+            name="orderNotes"
+            rows="3"
+            maxlength="250"
+            placeholder="Agrega alguna indicación..."
+          ></textarea>
+        </label>
+
+        <div class="checkout-notice">
+          <i class="fa-solid fa-circle-info"></i>
+
+          <p>
+            Al continuar se abrirá WhatsApp con el resumen. El pedido
+            será válido después de recibir la confirmación.
+          </p>
+        </div>
+
+        <div class="checkout-total">
+          <span>Total del pedido</span>
+          <strong id="checkout-total">$0,00</strong>
+        </div>
+
+        <button
+          type="submit"
+          class="button button--whatsapp button--full"
+        >
+          <i class="fa-brands fa-whatsapp"></i>
+          Enviar pedido por WhatsApp
+        </button>
+      </form>
+    </section>
+
+    <!-- Notificación -->
+    <div
+      class="toast"
+      id="toast"
+      role="status"
+      aria-live="polite"
+      aria-hidden="true"
+    >
+      <i class="fa-solid fa-circle-check"></i>
+      <span id="toast-message">
+        Producto agregado al pedido
+      </span>
+    </div>
+
+    <!-- Archivos JavaScript -->
+    <script src="./js/menu-data.js"></script>
+    <script src="./js/schedule.js"></script>
+    <script src="./js/cart.js"></script>
+    <script src="./js/app.js"></script>
+  </body>
+</html>
