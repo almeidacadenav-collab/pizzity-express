@@ -7,6 +7,8 @@ const appState = {
   selectedSize: "personal",
   selectedExtras: [],
   selectedQuantity: 1,
+  halfAndHalf: false,
+  secondFlavor: null,
 };
 
 const byId = (id) => document.getElementById(id);
@@ -109,11 +111,73 @@ function createDrinkCard(drink) {
       <button type="button" class="button button--primary">Agregar <i class="fa-solid fa-plus"></i></button>
     </div>`;
   content.querySelector("button").addEventListener("click", () => {
+    if (drink.requiresFlavor) {
+      openDrinkFlavorModal(drink);
+      return;
+    }
     addDrinkToCart(drink);
     showToast(`${drink.name} agregada al pedido`);
   });
   card.append(imageBox, content);
   return card;
+}
+
+function openDrinkFlavorModal(drink) {
+  let modal = byId("drink-flavor-modal");
+
+  if (!modal) {
+    modal = document.createElement("section");
+    modal.id = "drink-flavor-modal";
+    modal.className = "drink-flavor-modal";
+    modal.setAttribute("role", "dialog");
+    modal.setAttribute("aria-modal", "true");
+    document.body.appendChild(modal);
+  }
+
+  modal.innerHTML = `
+    <div class="drink-flavor-modal__header">
+      <div><p>Personaliza tu bebida</p><h2>Elige la jalea</h2></div>
+      <button type="button" class="drink-flavor-modal__close" aria-label="Cerrar selector"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="drink-flavor-modal__product">
+      <img src="${drink.image}" alt="${drink.name}" onerror="this.onerror=null;this.src='${drink.fallbackImage}'">
+      <div><h3>${drink.name}</h3><p>${drink.description}</p><strong>${formatCurrency(drink.price)}</strong></div>
+    </div>
+    <div class="drink-flavor-modal__options">
+      ${drink.flavors.map((flavor, index) => `
+        <label class="drink-flavor-option ${index === 0 ? "selected" : ""}">
+          <input type="radio" name="granizadoFlavor" value="${flavor}" ${index === 0 ? "checked" : ""}>
+          <span class="drink-flavor-option__dot drink-flavor-option__dot--${normalizeText(flavor)}"></span>
+          <span>${flavor}</span><i class="fa-solid fa-check"></i>
+        </label>`).join("")}
+    </div>
+    <button type="button" class="button button--primary button--full" id="confirm-drink-flavor">Agregar al pedido <i class="fa-solid fa-plus"></i></button>`;
+
+  const overlay = byId("modal-overlay");
+  if (overlay) overlay.style.display = "block";
+  modal.classList.add("open");
+  document.body.style.overflow = "hidden";
+
+  const closeModal = () => {
+    modal.classList.remove("open");
+    if (overlay) overlay.style.display = "none";
+    document.body.style.overflow = "";
+  };
+
+  modal.querySelector(".drink-flavor-modal__close")?.addEventListener("click", closeModal);
+  modal.querySelectorAll('input[name="granizadoFlavor"]').forEach((radio) => {
+    radio.addEventListener("change", () => {
+      modal.querySelectorAll(".drink-flavor-option").forEach((option) => option.classList.remove("selected"));
+      radio.closest(".drink-flavor-option")?.classList.add("selected");
+    });
+  });
+  byId("confirm-drink-flavor")?.addEventListener("click", () => {
+    const selected = modal.querySelector('input[name="granizadoFlavor"]:checked');
+    if (!selected) return;
+    addDrinkToCart({ ...drink, selectedFlavor: selected.value });
+    showToast(`${drink.name} de ${selected.value} agregado al pedido`);
+    closeModal();
+  });
 }
 
 function renderMenu() {
@@ -141,6 +205,8 @@ function openPizzaModal(pizzaId) {
   appState.selectedSize = "personal";
   appState.selectedExtras = [];
   appState.selectedQuantity = 1;
+  appState.halfAndHalf = false;
+  appState.secondFlavor = null;
   byId("modal-product-name").textContent = pizza.name;
   byId("modal-product-description").textContent = pizza.description;
   byId("modal-product-image").src = pizza.image;
@@ -151,6 +217,7 @@ function openPizzaModal(pizzaId) {
   byId("product-quantity").textContent = "1";
   byId("product-notes").value = "";
   renderSizes();
+  renderHalfAndHalfOptions();
   renderExtras();
   updateProductTotal();
   byId("product-modal").hidden = false;
@@ -175,11 +242,65 @@ function renderSizes() {
       <strong class="size-option__price">${formatCurrency(appState.selectedProduct.prices[size.id])}</strong>`;
     label.querySelector("input").addEventListener("change", () => {
       appState.selectedSize = size.id;
+      if (size.id === "personal") {
+        appState.halfAndHalf = false;
+        appState.secondFlavor = null;
+      }
       renderSizes();
+      renderHalfAndHalfOptions();
       renderExtras();
       updateProductTotal();
     });
     box.appendChild(label);
+  });
+}
+
+function renderHalfAndHalfOptions() {
+  const sizeBox = byId("modal-size-options");
+  if (!sizeBox) return;
+
+  let container = byId("half-and-half-options");
+  if (!container) {
+    container = document.createElement("div");
+    container.id = "half-and-half-options";
+    container.className = "half-and-half-options";
+    sizeBox.insertAdjacentElement("afterend", container);
+  }
+
+  if (appState.selectedSize === "personal") {
+    container.innerHTML = '<p class="half-note">El tamaño personal se prepara con un solo sabor.</p>';
+    return;
+  }
+
+  const options = PIZZAS
+    .filter((pizza) => pizza.id !== appState.selectedProduct.id)
+    .map((pizza) => `<option value="${pizza.id}" ${appState.secondFlavor?.id === pizza.id ? "selected" : ""}>${pizza.name}</option>`)
+    .join("");
+
+  container.innerHTML = `
+    <label class="half-toggle">
+      <input type="checkbox" id="half-and-half-checkbox" ${appState.halfAndHalf ? "checked" : ""}>
+      <span><strong>Preparar mitad y mitad</strong><small>Disponible en mediana y familiar</small></span>
+    </label>
+    <div class="second-flavor-field" ${appState.halfAndHalf ? "" : "hidden"}>
+      <label for="second-flavor-select">Segundo sabor</label>
+      <select id="second-flavor-select">
+        <option value="">Selecciona el segundo sabor</option>
+        ${options}
+      </select>
+      <p>Se cobrará el 50% de cada sabor.</p>
+    </div>`;
+
+  byId("half-and-half-checkbox")?.addEventListener("change", (event) => {
+    appState.halfAndHalf = event.target.checked;
+    if (!appState.halfAndHalf) appState.secondFlavor = null;
+    renderHalfAndHalfOptions();
+    updateProductTotal();
+  });
+
+  byId("second-flavor-select")?.addEventListener("change", (event) => {
+    appState.secondFlavor = event.target.value ? findPizzaById(event.target.value) : null;
+    updateProductTotal();
   });
 }
 
@@ -205,7 +326,12 @@ function renderExtras() {
 
 function unitTotal() {
   if (!appState.selectedProduct) return 0;
-  const base = appState.selectedProduct.prices[appState.selectedSize];
+  let base = appState.selectedProduct.prices[appState.selectedSize];
+  if (appState.halfAndHalf && appState.secondFlavor && appState.selectedSize !== "personal") {
+    base =
+      appState.selectedProduct.prices[appState.selectedSize] / 2 +
+      appState.secondFlavor.prices[appState.selectedSize] / 2;
+  }
   const extras = appState.selectedExtras.reduce((sum, extra) => sum + getExtraPrice(extra.group, appState.selectedSize), 0);
   return base + extras;
 }
@@ -241,10 +367,19 @@ function initializeApp() {
   byId("add-product-to-cart")?.addEventListener("click", () => {
     const pizza = appState.selectedProduct;
     if (!pizza) return;
+    if (appState.halfAndHalf && !appState.secondFlavor) {
+      alert("Selecciona el segundo sabor de la pizza mitad y mitad.");
+      return;
+    }
     addPizzaToCart({
       productId: pizza.id,
       type: "pizza",
-      name: pizza.name,
+      name: appState.halfAndHalf && appState.secondFlavor
+        ? `Mitad ${pizza.name} / Mitad ${appState.secondFlavor.name}`
+        : pizza.name,
+      firstFlavor: pizza.name,
+      secondFlavor: appState.secondFlavor?.name || null,
+      halfAndHalf: appState.halfAndHalf,
       image: pizza.image,
       fallbackImage: pizza.fallbackImage,
       size: appState.selectedSize,
