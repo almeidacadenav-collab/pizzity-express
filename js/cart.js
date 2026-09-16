@@ -20,7 +20,7 @@ function saveCart() {
 
 function createCartItemId(item) {
   const extras = (item.extras || []).map((extra) => extra.id).sort().join("-");
-  return `${item.type}-${item.productId}-${item.size || "unit"}-${extras}-${item.notes || ""}`;
+  return `${item.type}-${item.productId}-${item.secondFlavor || "single"}-${item.size || "unit"}-${extras}-${item.notes || ""}`;
 }
 
 function addPizzaToCart(configuredPizza) {
@@ -44,7 +44,7 @@ function addPizzaToCart(configuredPizza) {
 
 function addDrinkToCart(drink) {
   const item = {
-    cartId: `drink-${drink.id}`,
+    cartId: `drink-${drink.id}-${drink.selectedFlavor || "regular"}`,
     productId: drink.id,
     type: "drink",
     name: drink.name,
@@ -53,6 +53,7 @@ function addDrinkToCart(drink) {
     size: null,
     extras: [],
     notes: "",
+    selectedFlavor: drink.selectedFlavor || null,
     quantity: 1,
     unitTotal: Number(drink.price),
   };
@@ -175,6 +176,7 @@ function renderCart() {
               <div>
                 <h3>${item.name}</h3>
                 <p>${item.type === "pizza" ? sizeDisplay(item.size) : "Bebida"}</p>
+                ${item.selectedFlavor ? `<p class="cart-item__flavor">Jalea: ${item.selectedFlavor}</p>` : ""}
               </div>
               <button type="button" class="cart-item__remove" data-action="remove" aria-label="Eliminar ${item.name}">
                 <i class="fa-solid fa-trash"></i>
@@ -276,8 +278,14 @@ function buildWhatsAppMessage(formData) {
     lines.push(`${index + 1}. *${item.quantity}x ${item.name}*`);
     if (item.type === "pizza") {
       lines.push(`   Tamaño: ${sizeDisplay(item.size)}`);
+      if (item.halfAndHalf && item.secondFlavor) {
+        lines.push(`   Sabores: 1/2 ${item.firstFlavor} + 1/2 ${item.secondFlavor}`);
+      }
       if (item.extras?.length) lines.push(`   Extras: ${item.extras.map((extra) => extra.name).join(", ")}`);
       if (item.notes) lines.push(`   Nota: ${item.notes}`);
+    }
+    if (item.type === "drink" && item.selectedFlavor) {
+      lines.push(`   Jalea: ${item.selectedFlavor}`);
     }
     lines.push(`   Subtotal: ${formatCurrency(item.unitTotal * item.quantity)}`);
   });
