@@ -1,0 +1,46 @@
+/* SELECTOR DE PROTEINA PARA PIZZA ESPECIAL */
+.protein-options {
+  display: grid;
+  gap: 12px;
+  margin: 14px 0 24px;
+  padding: 16px;
+  border: 1px solid #ead36b;
+  border-radius: 14px;
+  background: #fffbe0;
+}
+.protein-options[hidden] { display: none; }
+.protein-options__title {
+  margin: 0;
+  color: #8b7600;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+}
+.protein-group { margin: 0; padding: 0; border: 0; }
+.protein-group legend { margin-bottom: 10px; font-weight: 800; }
+.protein-choice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.protein-choice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 14px;
+  border: 2px solid #dddddd;
+  border-radius: 12px;
+  background: #ffffff;
+  cursor: pointer;
+}
+.protein-choice:hover,
+.protein-choice.selected { border-color: #ffdd00; background: #fff7b8; }
+.protein-choice input { width: 18px; height: 18px; accent-color: #b99e00; }
+.protein-choice i { color: #8b7600; }
+.cart-item__protein {
+  margin: 4px 0 0;
+  color: #704d21;
+  font-size: 12px;
+  font-weight: 700;
+}
+@media (max-width: 420px) {
+  .protein-choice-grid { grid-template-columns: 1fr; }
+}
